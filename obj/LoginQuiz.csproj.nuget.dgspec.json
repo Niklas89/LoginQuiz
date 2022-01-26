@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuiz.csproj": {}
+    "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv2\\LoginQuiz.csproj": {}
   },
   "projects": {
-    "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuiz.csproj": {
+    "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv2\\LoginQuiz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuiz.csproj",
+        "projectUniqueName": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv2\\LoginQuiz.csproj",
         "projectName": "LoginQuiz",
-        "projectPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuiz.csproj",
+        "projectPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv2\\LoginQuiz.csproj",
         "packagesPath": "C:\\Users\\utilisateur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\obj\\",
+        "outputPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\utilisateur\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fc47cc54-c10c-45bb-962b-175fca50217c": {
+      "ProjectGuid": "fc47cc54-c10c-45bb-962b-175fca50217c",
+      "DisplayName": "LoginQuiz",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

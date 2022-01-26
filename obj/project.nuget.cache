@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wp2ARU3VnfzlT7A5SpM0I13sqU/ja1XBoEwcK02JdWeNipOL0WVm8mm9XUeWSmJyn/0BrO0r60CtX8nEOlTwUw==",
+  "dgSpecHash": "hZBDWyJ0aY3H9/a3mU08fYNiP++0R8qYgR2M1iXiVyAShu2vjC+GaGiPa/n6HcYi08HRklfXr/ZgYQHXYDjnxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuiz.csproj",
+  "projectFilePath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv2\\LoginQuiz.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\utilisateur\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\utilisateur\\.nuget\\packages\\microsoft.netcore.platforms\\1.0.1\\microsoft.netcore.platforms.1.0.1.nupkg.sha512",

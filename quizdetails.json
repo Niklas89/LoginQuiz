@@ -1,43 +1,28 @@
 {
-	"Users": [{
-			"Name": "Admin",
-			"Password": "4dmin"
-		},
-		{
-			"Name": "user",
-			"Password": "useR"
+	"Users": {
+			"Admin": "Admin",
+			"Adminpass": "4dmin",
+			"Username": "user",
+			"Userpass": "useR"
 		}
-	],
-	"Questions": [{
-        "Name": "Premiere questions"
-    },
-    {
-        "Name": "Deuxieme questions"
-    },
-    {
-        "Name": "Troisieme questions"
-    },
-    {
-        "Name": "Quatrieme questions"
+	,
+	"Questions": {
+        "Question1": "Premiere questions",
+        "Question2": "Deuxieme questions",
+        "Question3": "Troisieme questions",
+        "Question4": "Quatrieme questions"
     }
-    ],
-	"Answers": [{
-        "Name": "Premiere reponse"
-    },
-    {
-        "Name": "Deuxieme reponse"
-    },
-    {
-        "Name": "Troisieme reponse"
-    },
-    {
-        "Name": "Quatrieme reponse"
+    ,
+	"Answers": {
+        "Answer1": "Premiere reponse",
+        "Answer2": "Deuxieme reponse",
+        "Answer3": "Troisieme reponse",
+        "Answer4": "Quatrieme reponse"
     }
-    ],
-	"AdminInfo": [{
-        "nbParticipation": "1",
-        "successRate": "20",
-        "nbParticipationCorrect": "1"
+    ,
+	"AdminInfo": {
+        "nbParticipation": "0",
+        "successRate": "0",
+        "nbParticipationCorrect": "0"
     }
-    ]
 }

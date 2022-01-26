@@ -1,0 +1,43 @@
+{
+	"Users": [{
+			"Name": "Admin",
+			"Password": "4dmin"
+		},
+		{
+			"Name": "user",
+			"Password": "useR"
+		}
+	],
+	"Questions": [{
+        "Name": "Premiere questions"
+    },
+    {
+        "Name": "Deuxieme questions"
+    },
+    {
+        "Name": "Troisieme questions"
+    },
+    {
+        "Name": "Quatrieme questions"
+    }
+    ],
+	"Answers": [{
+        "Name": "Premiere reponse"
+    },
+    {
+        "Name": "Deuxieme reponse"
+    },
+    {
+        "Name": "Troisieme reponse"
+    },
+    {
+        "Name": "Quatrieme reponse"
+    }
+    ],
+	"AdminInfo": [{
+        "nbParticipation": "1",
+        "successRate": "20",
+        "nbParticipationCorrect": "1"
+    }
+    ]
+}

@@ -15,7 +15,7 @@ namespace LoginQuiz
             Console.WriteLine("Cher administrateur bienvenue, que voulez vous faire ?");
             Console.WriteLine("Tapez 'qchange' pour changer une question dans le fichier.");
             Console.WriteLine("Tapez 'rchange' pour changer une réponse dans le fichier.");
-            Console.WriteLine("Tapez 'logout' pour vous déconnecter.");
+            Console.WriteLine("Tapez 'infos' pour voir le nombre de participants et le taux de réussite.");
         }
 
         // gére la demande de reponse et l'ajoute a l'objet question
@@ -23,8 +23,11 @@ namespace LoginQuiz
         {
             string answer = Quiz.CheckAnswer();
             question.UserAnswers.Add(answer);
+        }
 
-
+        public static void DisplayAdminInfos()
+        {
+            JSONModel.GetAdminInfos();
         }
 
         // gere les réponses fausses 

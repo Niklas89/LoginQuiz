@@ -12,10 +12,10 @@ namespace LoginQuiz
 
         public void Login()
         {
-            string nameUserJson = JSONModel.JsonReader().users.username;
-            string nameAdminJson = JSONModel.JsonReader().users.admin;
-            string passwordUserJson = JSONModel.JsonReader().users.userpass;
-            string passwordAdminJson = JSONModel.JsonReader().users.adminpass;
+            string nameUserJson = JSONModel.ConvertJsonStrToDynamic().Users.Username;
+            string nameAdminJson = JSONModel.ConvertJsonStrToDynamic().Users.Admin;
+            string passwordUserJson = JSONModel.ConvertJsonStrToDynamic().Users.Userpass;
+            string passwordAdminJson = JSONModel.ConvertJsonStrToDynamic().Users.Adminpass;
 
             Console.WriteLine("Connectez-vous");
             Console.WriteLine("Identifiant:");

@@ -55,6 +55,7 @@ namespace LoginQuiz
         public int quizResult(List<Question> questions)
         {
             int result = 0;
+            int validedQuiz = 0;
 
             Console.WriteLine("resultat du Quiz");
 
@@ -69,22 +70,26 @@ namespace LoginQuiz
                     //if (!question.Answer.Contains(response))
                     if (!rgx.IsMatch(response))
                             goodAnswer = false;
-                    
-
                 }
 
                 if (!goodAnswer)
                 {
                     Display.DisplayWrongAnswer(question);
                     continue;
+                } else
+                {
+                    Display.DisplayGoodAnswer(question);
+                    result++;
                 }
 
-                Display.DisplayGoodAnswer(question);
-                result++;
-
-
             }
-
+            double average = (double)  (result*100) / questions.Count();
+            if(average >= 50)
+            {
+                validedQuiz = 1;
+            }
+            Console.WriteLine("Taux de réussite: " + average + "%");
+            JSONModel.ChangeScoreInfo(1, validedQuiz);
             return result;
         }
 

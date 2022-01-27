@@ -9,53 +9,13 @@ namespace LoginQuiz
 {
     public class JSONModel
     {
-        public const string filePath = @"C:\Users\utilisateur\source\repos\LoginQuizv2\quizdetails.json";
+        public const string filePath = @"C:\Users\utilisateur\source\repos\LoginQuizv3\jsondetails.json";
 
-        public class Rootobject
-        {
-            public Users users { get; set; }
-            public Questions questions { get; set; }
-            public Answers answers { get; set; }
-            public AdminInfo adminInfo { get; set; }
-        }
-
-        public class Users
-        {
-            public string admin { get; set; }
-            public string adminpass { get; set; }
-            public string username { get; set; }
-            public string userpass { get; set; }
-        }
-
-        public class Questions
-        {
-            public string question1 { get; set; }
-            public string question2 { get; set; }
-            public string question3 { get; set; }
-            public string question4 { get; set; }
-            
-        }
-
-        public class Answers
-        {
-            public string answer1 { get; set; }
-            public string answer2 { get; set; }
-            public string answer3 { get; set; }
-            public string answer4 { get; set; }
-        }
-
-        public class AdminInfo
-        {
-            public string nbParticipation { get; set; }
-            public string successRate { get; set; }
-            public string nbParticipationCorrect { get; set; }
-        }
-
-        public static Rootobject JsonReader()
+        public static dynamic ConvertJsonStrToDynamic()
         {
             string jsonStr = ReadStream();
-            Rootobject record = JsonConvert.DeserializeObject<Rootobject>(jsonStr);
-            return record;
+            dynamic DynamicData = JsonConvert.DeserializeObject(jsonStr);
+            return DynamicData;
         }
 
         public static string ReadStream()
@@ -65,6 +25,54 @@ namespace LoginQuiz
             string jsonStr = streamReader.ReadToEnd();
             streamReader.Close();
             return jsonStr;
+        }
+
+
+        public static List<Question> GetAllQuestions()
+        {
+            List<Question> Questionlist = new List<Question>();
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            int i = 0;
+            foreach (var itemQuestion in DynamicData.Questions)
+            {
+                string question = itemQuestion;
+                string answer = DynamicData.Answers[i];
+                Questionlist.Add(new Question(question, answer));
+                i++;
+            }
+            return Questionlist;
+        }
+
+        public static void WriteStream(string jsonStr)
+        {
+            //checking if the file already exists
+            if (File.Exists(filePath))
+            {
+                //deleting file if it exists
+                File.Delete(filePath);
+            }
+            
+            //creating StreamWriter to write JSON data to file
+            using (StreamWriter streamWriter = new StreamWriter(filePath, true))
+            {
+                streamWriter.WriteLine(jsonStr);
+                streamWriter.Close();
+            }
+
+            // other method to write data to file:
+            // File.WriteAllText(filePath, jsonStr); 
+        }
+
+
+
+        public static void ChangeScoreInfo(int newParticipant, int validedQuiz)
+        {
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            DynamicData.AdminInfo.nbParticipation += newParticipant;
+            DynamicData.AdminInfo.nbParticipationCorrect += validedQuiz;
+            DynamicData.AdminInfo.successRate = (DynamicData.AdminInfo.nbParticipationCorrect * 100) / DynamicData.AdminInfo.nbParticipation;
+            string jsonStr = JsonConvert.SerializeObject(DynamicData);
+            WriteStream(jsonStr);
         }
 
 
@@ -96,26 +104,15 @@ namespace LoginQuiz
                 res = int.TryParse(Console.ReadLine(), out numQuestion);
                 if (res)
                 {
-                    if (numQuestion >= 1 && numQuestion <= Questionlist.Count())
-                    {
-                        res = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Le numéro doit être supérieur à 1 et inférieur ou égal à " + Questionlist.Count());
-                        res = true;
-                    }
+                    res = verifyNumberCount(numQuestion, Questionlist.Count());
                 } else
                 {
                     Console.WriteLine("Vous n'avez pas tapé un numéro. Réessayez.");
                     res = true;
                 }
             }
-
-            
             string jsonStr = ReadStream();
             StringBuilder sb = new StringBuilder(jsonStr);
-
             i = 0;
             // affiche toutes les questions une par une 
             foreach (Question question in Questionlist)
@@ -129,22 +126,23 @@ namespace LoginQuiz
                 }
             }
             jsonStr = sb.ToString();
-            //checking if the file already exists
-            if (File.Exists(filePath))
-            {
-                //deleting file if it exists
-                File.Delete(filePath);
-            }
-            // File.WriteAllText(filePath, jsonStr); 
-            //creating StreamWriter to write JSON data to file
-            using (StreamWriter streamWriter = new StreamWriter(filePath, true))
-            {
-                streamWriter.WriteLine(jsonStr);
-                streamWriter.Close();
-            }
+            WriteStream(jsonStr);
         }
 
 
+
+        public static bool verifyNumberCount(int number, int questionCount)
+        {
+            if (number >= 1 && number <= questionCount)
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Le numéro doit être supérieur à 1 et inférieur ou égal à " + questionCount);
+                return true;
+            }
+        }
 
 
 
@@ -175,25 +173,15 @@ namespace LoginQuiz
                 res = int.TryParse(Console.ReadLine(), out numAnswer);
                 if (res)
                 {
-                    if(numAnswer >= 1 && numAnswer <= Questionlist.Count())
-                    {
-                        res = false;
-                    } else
-                    {
-                        Console.WriteLine("Le numéro doit être supérieur à 1 et inférieur ou égal à "+ Questionlist.Count());
-                        res = true;
-                    }
+                    res = verifyNumberCount(numAnswer, Questionlist.Count());
                 } else
                 {
                     Console.WriteLine("Vous n'avez pas tapé un numéro. Réessayez.");
                     res = true;
                 }
             }
-
-
             string jsonStr = ReadStream();
             StringBuilder sb = new StringBuilder(jsonStr);
-
             i = 0;
             // affiche toutes les questions une par une 
             foreach (Question question in Questionlist)
@@ -207,25 +195,15 @@ namespace LoginQuiz
                 }
             }
             jsonStr = sb.ToString();
-            //checking if the file already exists
-            if (File.Exists(filePath))
-            {
-                //deleting file if it exists
-                File.Delete(filePath);
-            }
-            File.WriteAllText(filePath, jsonStr);
+            WriteStream(jsonStr);
         }
 
-
-        public static List<Question> GetAllQuestions()
+        public static void GetAdminInfos()
         {
-            List<Question> Questionlist = new List<Question>();
-            Questionlist.Add(new Question(JsonReader().questions.question1, JsonReader().answers.answer1));
-            Questionlist.Add(new Question(JsonReader().questions.question2, JsonReader().answers.answer2));
-            Questionlist.Add(new Question(JsonReader().questions.question3, JsonReader().answers.answer3));
-            Questionlist.Add(new Question(JsonReader().questions.question4, JsonReader().answers.answer4));  
-
-            return Questionlist;
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            Console.WriteLine("Nombre de participations: "+DynamicData.AdminInfo.nbParticipation);
+            Console.WriteLine("Taux de réussite: "+DynamicData.AdminInfo.successRate+"%");
+            Console.WriteLine("Nombre de participants validé le quiz: "+DynamicData.AdminInfo.nbParticipationCorrect);
         }
 
     }

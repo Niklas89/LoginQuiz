@@ -23,19 +23,21 @@ namespace LoginQuiz
             {
                 adminChangeAnswer();
             }
-            else if (adminChoice == "logout")
+            // show admin infos about participants
+            else if (adminChoice == "infos")
             {
                 Console.Clear();
-                Menu menu = new Menu();
-                menu.Login();
+                Display.DisplayAdminInfos();
+                goBackToAdminMenu();
+                
             }
-            initAdmin();
         }
         public void adminChangeQuestion()
         {
             bool keepChanging = true;
             while (keepChanging)
             {
+                Console.Clear();
                 JSONModel.ChangeOneQuestion();
                 Console.WriteLine("Votre question a bien été changée et ajoutée au document.");
                 Console.WriteLine("Souhaitez vous changer encore une question? Oui: 'o' / Non: 'n");
@@ -45,12 +47,14 @@ namespace LoginQuiz
                     keepChanging = false;
                 }
             }
+            initAdmin();
         }
         public void adminChangeAnswer()
         {
             bool keepChanging = true;
             while (keepChanging)
             {
+                Console.Clear();
                 JSONModel.ChangeOneAnswer();
                 Console.WriteLine("Votre réponse a bien été changée et ajoutée au document.");
                 Console.WriteLine("Souhaitez vous changer encore une réponse? Oui: 'o' / Non: 'n");
@@ -60,6 +64,23 @@ namespace LoginQuiz
                     keepChanging = false;
                 }
             }
+            initAdmin();
+        }
+        public void goBackToAdminMenu()
+        {
+            bool keepChanging = true;
+            while (keepChanging)
+            {
+                Console.WriteLine();
+                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("Souhaitez vous revenir au menu admin? Oui: 'o' ");
+                string? wishChange = Console.ReadLine().ToLower();
+                if (wishChange == "o")
+                {
+                    keepChanging = false;
+                }
+            }
+            initAdmin();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LoginQuiz
@@ -25,7 +26,9 @@ namespace LoginQuiz
 
         public void Start(List<Question> questions)
         {
+            Console.Clear();
             Console.WriteLine("Repondez au Quiz");
+            Console.WriteLine("_________________________");
             StartQuiz(questions);
         }
 
@@ -43,11 +46,46 @@ namespace LoginQuiz
                 Console.WriteLine(question.Answer);
                 Console.Clear();
             }
-            // FAIRE LE CALCULE DE SCORE ET COMPARER AVEC REPONSE USER
             // calcul le score 
-            //int score = quizResult(questions);
-            //Console.WriteLine($"Le resultat de votre quiz et de {score} sur {questions.Count()}");
+            int score = quizResult(questions);
+            Console.WriteLine($"Le resultat de votre quiz et de {score} sur {questions.Count()}");
 
+        }
+
+        public int quizResult(List<Question> questions)
+        {
+            int result = 0;
+
+            Console.WriteLine("resultat du Quiz");
+
+            // verifie si une réponse est bonne ou non 
+            foreach (Question question in questions)
+            {
+                bool goodAnswer = true;
+
+                foreach (string response in question.UserAnswers)
+                {
+                    Regex rgx = new Regex($@"\b{Regex.Escape(question.Answer)}\b");
+                    //if (!question.Answer.Contains(response))
+                    if (!rgx.IsMatch(response))
+                            goodAnswer = false;
+                    
+
+                }
+
+                if (!goodAnswer)
+                {
+                    Display.DisplayWrongAnswer(question);
+                    continue;
+                }
+
+                Display.DisplayGoodAnswer(question);
+                result++;
+
+
+            }
+
+            return result;
         }
 
         public static string CheckAnswer()

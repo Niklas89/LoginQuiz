@@ -9,15 +9,15 @@
 	"Questions": {
         "Question1": "Premiere questions",
         "Question2": "Deuxieme questions",
-        "Question3": "eeeeeee",
-        "Question4": "papappipopo"
+        "Question3": "Troisieme questions",
+        "Question4": "Quatrieme questions"
     }
     ,
 	"Answers": {
         "Answer1": "Premiere reponse",
         "Answer2": "Deuxieme reponse",
-        "Answer3": "reponse3",
-        "Answer4": "reponse444"
+        "Answer3": "Troisieme reponse",
+        "Answer4": "Quatrieme reponse"
     }
     ,
 	"AdminInfo": {
@@ -26,18 +26,3 @@
         "nbParticipationCorrect": "0"
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

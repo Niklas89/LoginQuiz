@@ -1,7 +1,1 @@
-{"Users":{"Admin":"Admin","Adminpass":"4dmin","Username":"user","Userpass":"useR"},"Questions":["Premiere question","Deuxieme question","Troisieme question","Quatrieme question"],"Answers":["Premiere reponse","Deuxieme reponse","Troisieme reponse","Quatrieme reponse"],"AdminInfo":{"nbParticipation":20,"successRate":50,"nbParticipationCorrect":10}}
-
-
-
-
-
-
+{"Users":{"Admin":"Admin","Adminpass":"57f54e340ed69d630da3fd610f4e6afb1e4ba6f474b9f7358999d9f2ae67b286","Username":"user","Userpass":"e958ef3b8309deba35d4cbd0a9a1fa86d86ea12296619881472c73c45efd37c9"},"Questions":["Premiere question","Deuxieme question","Troisieme question","Quatrieme question"],"Answers":["Premiere reponse","Deuxieme reponse","Troisieme reponse","Quatrieme reponse"],"AdminInfo":{"nbParticipation":22,"successRate":50,"nbParticipationCorrect":11}}

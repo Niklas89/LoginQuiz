@@ -77,6 +77,44 @@ namespace LoginQuiz
 
 
 
+        public static void ShowScoreInfo()
+        {
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            Console.WriteLine("Nombre de participants : "+DynamicData.AdminInfo.nbParticipation);
+            Console.WriteLine("Nombre de ayant validé correctement le quiz (score supérieur ou égal à la moyenne) : " + DynamicData.AdminInfo.nbParticipationCorrect);
+            Console.WriteLine("Taux de réussite : " + DynamicData.AdminInfo.successRate+"%");
+        }
+
+
+
+        public static void AddOneQuestion(string newQuestion)
+        {
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            string jsonStr = JsonConvert.SerializeObject(DynamicData.Questions);
+            StringBuilder sb = new StringBuilder(jsonStr);
+            sb.Insert(sb.Length-1, $",\"{newQuestion}\"");
+            jsonStr = sb.ToString();
+            DynamicData.Questions = JsonConvert.DeserializeObject(jsonStr);
+            jsonStr = JsonConvert.SerializeObject(DynamicData);
+            WriteStream(jsonStr);
+        }
+
+
+
+        public static void AddOneAnswer(string newAnswer)
+        {
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            string jsonStr = JsonConvert.SerializeObject(DynamicData.Answers);
+            StringBuilder sb = new StringBuilder(jsonStr);
+            sb.Insert(sb.Length - 1, $",\"{newAnswer}\"");
+            jsonStr = sb.ToString();
+            DynamicData.Answers = JsonConvert.DeserializeObject(jsonStr);
+            jsonStr = JsonConvert.SerializeObject(DynamicData);
+            WriteStream(jsonStr);
+        }
+
+
+
 
         // Change a question
         public static void ChangeOneQuestion()
@@ -195,6 +233,20 @@ namespace LoginQuiz
                 }
             }
             jsonStr = sb.ToString();
+            WriteStream(jsonStr);
+        }
+
+        public static void InsertHashedPasswords(string password, string user)
+        {
+            dynamic DynamicData = ConvertJsonStrToDynamic();
+            if(user == "user")
+            {
+                DynamicData.Users.Userpass = password;
+            } else if(user == "admin")
+            {
+                DynamicData.Users.Adminpass = password;
+            }
+            string jsonStr = JsonConvert.SerializeObject(DynamicData);
             WriteStream(jsonStr);
         }
 

@@ -83,7 +83,7 @@ namespace LoginQuiz
                 }
 
             }
-            double average = (double)  (result*100) / questions.Count();
+            int average = (result*100) / questions.Count();
             if(average >= 50)
             {
                 validedQuiz = 1;
@@ -106,6 +106,27 @@ namespace LoginQuiz
             } while (string.IsNullOrEmpty(answer));
 
             return answer;
+        }
+
+        public static void ShowQuestions()
+        {
+            // créer une liste de questions 
+            List<Question> Questionlist = new List<Question>();
+            // récupere les questions dans le fichier
+            Questionlist = JSONModel.GetAllQuestions();
+
+            int i = 0;
+            // affiche toutes les questions une par une 
+            foreach (Question question in Questionlist)
+            {
+
+                Console.WriteLine("Question n° " + ++i);
+                Console.WriteLine(question.Ask);
+                Console.WriteLine("Réponse : "+question.Answer);
+                Console.WriteLine("----");
+            }
+
+            JSONModel.ShowScoreInfo();
         }
     }
 }

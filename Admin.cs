@@ -17,34 +17,39 @@ namespace LoginQuiz
             if (adminChoice == "qchange")
             {
                 adminChangeQuestion();
+                return;
             }
             // change answer
-            else if (adminChoice == "rchange")
+            if (adminChoice == "rchange")
             {
                 adminChangeAnswer();
+                return;
             }
             // add question
-            else if (adminChoice == "qadd")
+            if (adminChoice == "qadd")
             {
                 adminAddQuestion();
+                return;
             }
             // add question
-            else if (adminChoice == "radd")
+            if (adminChoice == "radd")
             {
                 adminAddAnswer();
+                return;
             }
             // add question
-            else if (adminChoice == "questions")
+            if (adminChoice == "questions")
             {
                 adminShowQuestions();
+                return;
             } 
             // show admin infos about participants
-            else if (adminChoice == "infos")
+            if (adminChoice == "infos")
             {
                 Console.Clear();
                 Display.DisplayAdminInfos();
                 goBackToAdminMenu();
-                
+                return;
             }
         }
         public void adminChangeQuestion()

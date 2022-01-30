@@ -15,8 +15,8 @@ namespace LoginQuiz
             Console.WriteLine("Cher administrateur bienvenue, que voulez vous faire ?");
             Console.WriteLine("Tapez 'qchange' pour changer une question dans le fichier.");
             Console.WriteLine("Tapez 'rchange' pour changer une réponse dans le fichier.");
-            Console.WriteLine("Tapez 'qadd' pour ajouter une question dans le fichier.");
-            Console.WriteLine("Tapez 'radd' pour ajouter une réponse dans le fichier.");
+            Console.WriteLine("Tapez 'add' pour ajouter une question et sa réponse dans le fichier.");
+            Console.WriteLine("Tapez 'remove' pour supprimer une question et sa réponse du fichier.");
             Console.WriteLine("Tapez 'questions' pour afficher la liste des questions");
             Console.WriteLine("Tapez 'infos' pour voir le nombre de participants et le taux de réussite.");
         }

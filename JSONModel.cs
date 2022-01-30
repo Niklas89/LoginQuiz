@@ -9,7 +9,7 @@ namespace LoginQuiz
 {
     public class JSONModel
     {
-        public const string filePath = @"C:\Users\utilisateur\source\repos\LoginQuizv3\jsondetails.json";
+        public const string filePath = @"C:\Users\utilisateur\source\repos\LoginQuiz\LoginQuizv3\jsondetails.json";
 
         public static dynamic ConvertJsonStrToDynamic()
         {
@@ -92,7 +92,7 @@ namespace LoginQuiz
             dynamic DynamicData = ConvertJsonStrToDynamic();
             string jsonStr = JsonConvert.SerializeObject(DynamicData.Questions);
             StringBuilder sb = new StringBuilder(jsonStr);
-            sb.Insert(sb.Length-1, $",\"{newQuestion}\"");
+            sb.Insert(sb.Length-1, $", \"{newQuestion}\"");
             jsonStr = sb.ToString();
             DynamicData.Questions = JsonConvert.DeserializeObject(jsonStr);
             jsonStr = JsonConvert.SerializeObject(DynamicData);
@@ -106,7 +106,7 @@ namespace LoginQuiz
             dynamic DynamicData = ConvertJsonStrToDynamic();
             string jsonStr = JsonConvert.SerializeObject(DynamicData.Answers);
             StringBuilder sb = new StringBuilder(jsonStr);
-            sb.Insert(sb.Length - 1, $",\"{newAnswer}\"");
+            sb.Insert(sb.Length - 1, $", \"{newAnswer}\"");
             jsonStr = sb.ToString();
             DynamicData.Answers = JsonConvert.DeserializeObject(jsonStr);
             jsonStr = JsonConvert.SerializeObject(DynamicData);
@@ -143,7 +143,8 @@ namespace LoginQuiz
                 if (res)
                 {
                     res = verifyNumberCount(numQuestion, Questionlist.Count());
-                } else
+                }
+                else
                 {
                     Console.WriteLine("Vous n'avez pas tapé un numéro. Réessayez.");
                     res = true;
@@ -161,6 +162,93 @@ namespace LoginQuiz
                     Console.WriteLine("Ecrivez la nouvelle question.");
                     string newQuestionAsk = Console.ReadLine();
                     sb.Replace(question.Ask, newQuestionAsk);
+                }
+            }
+            jsonStr = sb.ToString();
+            WriteStream(jsonStr);
+        }
+
+
+
+
+        // Change a question
+        public static void RemoveQuestAnsw()
+        {
+            Console.WriteLine("Indiquez la question et sa réponse à supprimer dans la liste ci-dessous:");
+            // créer une liste de questions 
+            List<Question> Questionlist = new List<Question>();
+
+            // récupere les questions dans le fichier
+            Questionlist = JSONModel.GetAllQuestions();
+
+            int i = 0;
+            // affiche toutes les questions une par une 
+            foreach (Question question in Questionlist)
+            {
+
+                Console.WriteLine("Question n° " + ++i);
+                Console.WriteLine(question.Ask);
+                Console.WriteLine("Réponse: "+ question.Answer);
+
+                if (Questionlist.Count() == 1)
+                {
+                    Console.WriteLine("Il reste qu'une question dans le Quiz, vous ne pouvez pas la supprimer, veuillez en ajouter plus.");
+                    Console.ReadKey();
+                    return;
+                }
+            }
+            int numQuestion = 0;
+            bool res = true;
+            while (res)
+            {
+                Console.WriteLine("Quelle question souhaitez vous supprimer? Tapez le numéro correspondant.");
+                res = int.TryParse(Console.ReadLine(), out numQuestion);
+                if (res)
+                {
+                    res = verifyNumberCount(numQuestion, Questionlist.Count());
+                } else
+                {
+                    Console.WriteLine("Vous n'avez pas tapé un numéro. Réessayez.");
+                    res = true;
+                }
+            }
+            string jsonStr = ReadStream();
+            StringBuilder sb = new StringBuilder(jsonStr);
+            i = 0;
+            // affiche toutes les questions une par une et supprime celle qui correspond
+            // FORMAT DU JSON DOIT ETRE COMME CECI POUR QUE CELA FONCTIONNE:
+            // "Questions": ["Premiere question", "Deuxieme question", "Troisieme question", "Quatrieme question"],
+	        // "Answers": ["Premiere reponse", "Deuxieme reponse", "Troisieme reponse", "Quatrieme reponse"],
+            foreach (Question question in Questionlist)
+            {
+                ++i;
+                if (i == numQuestion)
+                {
+                    int charIndexAnswRemove = -2;
+                    int charIndexQuestRemove = -2;
+                    if (i == 1)
+                    {
+                        charIndexQuestRemove = -1;
+                        charIndexAnswRemove = 2;
+                    } 
+                    // check longueur de string question et son index dans la string jsonStr 
+                    // pour la supprimer de la string total à envoyer dans le StreamWriter
+                    StringBuilder sbquest = new StringBuilder(question.Ask);
+                    int questlength = sbquest.Length;
+                    int questindex = jsonStr.IndexOf(question.Ask);
+                    questlength = questlength + 3; // enlever les " dans le json
+                    questindex = questindex + charIndexQuestRemove; // si cest le premier element de la liste faudra faire -1 au lieu de -3
+
+                    // meme chose pour la réponse qui doit etre supprimée en meme temps
+                    StringBuilder sbanswer = new StringBuilder(question.Answer);
+                    int answerlength = sbanswer.Length;
+                    int answerindex = jsonStr.IndexOf(question.Answer);
+                    answerlength = answerlength + 3; // enlever les " dans le json
+                    answerindex = (answerindex + charIndexAnswRemove) - (questlength + 3); // si cest le premier element de la liste faudra faire -1
+
+                    // reponse et question se suppriment
+                    sb.Remove(questindex, questlength);
+                    sb.Remove(answerindex, answerlength);
                 }
             }
             jsonStr = sb.ToString();

@@ -87,6 +87,11 @@ namespace LoginQuiz
             if(average >= 50)
             {
                 validedQuiz = 1;
+                Console.WriteLine("Vous avez réussi le Quiz. Félicitations !");
+            } else
+            {
+                validedQuiz = 0;
+                Console.WriteLine("Vous avez échoué au Quiz. Désolé.");
             }
             Console.WriteLine("Taux de réussite: " + average + "%");
             JSONModel.ChangeScoreInfo(1, validedQuiz);

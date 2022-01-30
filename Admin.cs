@@ -26,15 +26,15 @@ namespace LoginQuiz
                 return;
             }
             // add question
-            if (adminChoice == "qadd")
+            if (adminChoice == "add")
             {
-                adminAddQuestion();
+                adminAddQuestAnsw();
                 return;
             }
-            // add question
-            if (adminChoice == "radd")
+            // remove question and answer
+            if (adminChoice == "remove")
             {
-                adminAddAnswer();
+                adminRemoveQuestAnsw();
                 return;
             }
             // add question
@@ -69,7 +69,7 @@ namespace LoginQuiz
             }
             initAdmin();
         }
-        public void adminAddQuestion()
+        public void adminAddQuestAnsw()
         {
             bool keepChanging = true;
             while (keepChanging)
@@ -79,7 +79,15 @@ namespace LoginQuiz
                 string newQuestion = Console.ReadLine();
                 JSONModel.AddOneQuestion(newQuestion);
                 Console.WriteLine("Votre question ajoutée au document.");
-                Console.WriteLine("Souhaitez vous ajouter encore une question? Oui: 'o' / Non: 'n");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Veuillez écrire la réponse que vous souhaitez ajouter");
+                string newAnswer = Console.ReadLine();
+                JSONModel.AddOneAnswer(newAnswer);
+                Console.WriteLine("Votre réponse ajoutée au document.");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Souhaitez vous ajouter encore une question et sa réponse ? Oui: 'o' / Non: 'n");
                 string? wishChange = Console.ReadLine().ToLower();
                 if (wishChange == "n")
                 {
@@ -88,17 +96,15 @@ namespace LoginQuiz
             }
             initAdmin();
         }
-        public void adminAddAnswer()
+        public void adminRemoveQuestAnsw()
         {
             bool keepChanging = true;
             while (keepChanging)
             {
                 Console.Clear();
-                Console.WriteLine("Veuillez écrire la réponse que vous souhaitez ajouter");
-                string newAnswer = Console.ReadLine();
-                JSONModel.AddOneAnswer(newAnswer);
-                Console.WriteLine("Votre réponse ajoutée au document.");
-                Console.WriteLine("Souhaitez vous ajouter encore une réponse ? Oui: 'o' / Non: 'n");
+                JSONModel.RemoveQuestAnsw();
+                Console.WriteLine("Votre question et sa réponse ont bien été supprimé");
+                Console.WriteLine("Souhaitez vous supprimer encore une question et réponse ? Oui: 'o' / Non: 'n");
                 string? wishChange = Console.ReadLine().ToLower();
                 if (wishChange == "n")
                 {

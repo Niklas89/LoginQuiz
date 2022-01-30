@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv3\\LoginQuiz.csproj": {}
+    "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuizv3\\LoginQuiz.csproj": {}
   },
   "projects": {
-    "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv3\\LoginQuiz.csproj": {
+    "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuizv3\\LoginQuiz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv3\\LoginQuiz.csproj",
+        "projectUniqueName": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuizv3\\LoginQuiz.csproj",
         "projectName": "LoginQuiz",
-        "projectPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv3\\LoginQuiz.csproj",
+        "projectPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuizv3\\LoginQuiz.csproj",
         "packagesPath": "C:\\Users\\utilisateur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuizv3\\obj\\",
+        "outputPath": "C:\\Users\\utilisateur\\source\\repos\\LoginQuiz\\LoginQuizv3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\utilisateur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,7 +21,8 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
